@@ -83,7 +83,7 @@ export default {
     },
     paginated: {
       type: Boolean,
-      default: true
+      default: false
     },
     totalDataCount: {
       type: Number,
@@ -117,6 +117,11 @@ export default {
       }
     },
     errorMessage: null
+  },
+  mounted() {
+    if(this.paginated) {
+      this.emitPaginationChange()
+    }
   },
   data() {
     return {
