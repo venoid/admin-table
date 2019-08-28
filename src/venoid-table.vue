@@ -1,4 +1,5 @@
 <template>
+<section class="table">
   <b-table
     :data="tableData"
     :hoverable="true"
@@ -7,7 +8,7 @@
     :current-page="currentPage"
     :per-page="perPage"
     backend-pagination
-    :total="totalDataNumber"
+    :total="total"
     @page-change="(page) => $emit('page-change', page)"
     pagination-size="is-small"
   >
@@ -51,9 +52,15 @@
       </section>
     </template>
   </b-table>
+  <b-select v-if="paginated" class="per-page" size="is-small" v-model="perPage" @input="savePerPage">
+        <option v-for="(option, index) in perPageOptions" :key="`perpage${index}`" :value="option.value">{{ option.label }}</option>
+  </b-select>
+</section>
 </template>
 
 <script>
+import md5 from 'md5'
+
 export default {
   name: 'venoid-table',
   props: {
@@ -77,18 +84,69 @@ export default {
       type: Boolean,
       default: false
     },
-    totalDataNumber: {
+    totalDataCount: {
       type: Number,
-      default: 0
-    },
-    perPage: {
-      type: Number,
-      default: 2
+      default: null
     },
     currentPage: {
       type: Number,
       default: 1
+    },
+    perPageOptions: {
+      type: Array,
+      default() {
+        return [
+          {
+            value: '5',
+            label: 5
+          },
+          {
+            value: '10',
+            label: 10
+          },
+          {
+            value: '15',
+            label: 15
+          },
+          {
+            value: '20',
+            label: 20
+          }
+        ]
+      }
+    }
+  },
+  data() {
+    return {
+      perPage: localStorage.getItem(this.getPerPageKey()) || 5,
+      perPageLocalStorageKey: null
+    }
+  },
+  computed: {
+    total() {
+      if (this.totalDataCount === null) {
+        return this.tableData.length
+      }
+      return this.totalDataCount
+    }
+  },
+  methods: {
+    savePerPage(value) {
+      localStorage.setItem(this.getPerPageKey(), value)
+    },
+    getPerPageKey() {
+      return `per-page: ${md5(JSON.stringify(this.tableColumns))}`
     }
   }
 }
 </script>
+
+<style scoped>
+  .table {
+    position: relative;
+  }
+  .per-page {
+    position: absolute;
+    bottom: 1.5rem;
+  }
+</style>

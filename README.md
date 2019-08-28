@@ -10,6 +10,10 @@ Table component for your administration provides you good options how to load an
 | table-columns | Array   | undefined | Array of objects with options        |
 | table-data    | Array   | undefined | Array with your data                 |
 | is-loading    | Boolean | false     | When true, loading animation appears |
+| paginated     | Boolean | false     | When true, pagination appears        |
+| totalDataCount | Number | null     | Total count of your data             |
+| currentPage   | Number  | 1         | Number of the current page           |
+| perPageOptions   | Array  | [{value: '5', label: 5}, {value: '10', label: 10}, {value: '15', label: 15}, {value: '20', label: 20}]         | Define your own select box with per page options |
 
 #### table-columns options
 ```
