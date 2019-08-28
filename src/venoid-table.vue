@@ -118,7 +118,7 @@ export default {
     },
     errorMessage: null
   },
-  mounted() {
+  created() {
     if(this.paginated) {
       this.emitPaginationChange()
     }
