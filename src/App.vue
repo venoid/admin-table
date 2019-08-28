@@ -1,11 +1,13 @@
 <template>
   <div id="app">
     <h1>Venoid table</h1>
-    <venoid-table
-      :table-columns="tableColumns"
-      :table-data="tableData"
-      :isLoading="isLoading"
-    />
+    <div class="example-container">
+      <venoid-table
+        :table-columns="tableColumns"
+        :table-data="tableData"
+        :isLoading="isLoading"
+      />
+    </div>
   </div>
 </template>
 
@@ -97,5 +99,11 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.example-container {
+  padding-top: 16px;
+  margin: auto;
+  max-width: 80%;
 }
 </style>

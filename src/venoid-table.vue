@@ -1,5 +1,16 @@
 <template>
-  <b-table :data="tableData" :hoverable="true" :loading="isLoading">
+  <b-table
+    :data="tableData"
+    :hoverable="true"
+    :loading="isLoading"
+    :paginated="paginated"
+    :current-page="currentPage"
+    :per-page="perPage"
+    backend-pagination
+    :total="totalDataNumber"
+    @page-change="(page) => $emit('page-change', page)"
+    pagination-size="is-small"
+  >
     <template slot-scope="props">
       <b-table-column
         v-for="(column, index) in tableColumns"
@@ -61,6 +72,22 @@ export default {
     isLoading: {
         type: Boolean,
         default: false
+    },
+    paginated: {
+      type: Boolean,
+      default: false
+    },
+    totalDataNumber: {
+      type: Number,
+      default: 0
+    },
+    perPage: {
+      type: Number,
+      default: 2
+    },
+    currentPage: {
+      type: Number,
+      default: 1
     }
   }
 }
