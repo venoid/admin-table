@@ -136,6 +136,7 @@ export default {
   },
   methods: {
     savePerPage(value) {
+      this.$emit('per-page-change', value)
       localStorage.setItem(this.getPerPageKey(), value)
     },
     getPerPageKey() {
