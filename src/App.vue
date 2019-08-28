@@ -79,9 +79,16 @@ export default {
   },
   async created() {
     this.isLoading = true
-    const {data} = await axios.get('https://my-json-server.typicode.com/dmitrijt9/book-api-mock/books')
-    this.tableData = data
-    this.isLoading = false
+    const vm = this
+    var oReq = new XMLHttpRequest();
+    oReq.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        vm.tableData = JSON.parse(this.responseText)
+        vm.isLoading = false
+      }
+    }
+    oReq.open("GET", "https://my-json-server.typicode.com/dmitrijt9/book-api-mock/books");
+    oReq.send();
   },
   methods: {
     test(data) {
