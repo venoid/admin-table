@@ -5,11 +5,11 @@
     :hoverable="true"
     :loading="isLoading"
     :paginated="paginated"
-    :current-page="currentPage"
-    :per-page="perPage"
+    :current-page="iCurrentPage"
+    :per-page="iPerPage"
     backend-pagination
     :total="total"
-    @page-change="(page) => $emit('page-change', page)"
+    @page-change="emitPaginationChange"
     pagination-size="is-small"
   >
     <template slot-scope="props">
@@ -53,7 +53,7 @@
       </section>
     </template>
   </b-table>
-  <b-select v-if="paginated" class="per-page" size="is-small" v-model="perPage" @input="savePerPage">
+  <b-select v-if="paginated" class="per-page" size="is-small" v-model="iPerPage" @input="savePerPage">
         <option v-for="(option, index) in perPageOptions" :key="`perpage${index}`" :value="option.value">{{ option.label }}</option>
   </b-select>
 </section>
@@ -83,7 +83,7 @@ export default {
     },
     paginated: {
       type: Boolean,
-      default: false
+      default: true
     },
     totalDataCount: {
       type: Number,
@@ -120,8 +120,9 @@ export default {
   },
   data() {
     return {
-      perPage: localStorage.getItem(this.getPerPageKey()) || 5,
-      perPageLocalStorageKey: null
+      iPerPage: localStorage.getItem(this.getPerPageKey()) || 5,
+      perPageLocalStorageKey: null,
+      iCurrentPage: this.currentPage
     }
   },
   computed: {
@@ -136,11 +137,17 @@ export default {
   },
   methods: {
     savePerPage(value) {
-      this.$emit('per-page-change', value)
+      this.emitPaginationChange()
       localStorage.setItem(this.getPerPageKey(), value)
     },
     getPerPageKey() {
       return `per-page: ${md5(JSON.stringify(this.tableColumns))}`
+    },
+    emitPaginationChange() {
+      this.$emit('pagination-change', {
+        currentPage: this.iCurrentPage,
+        perPage: this.iPerPage
+      })
     }
   }
 }

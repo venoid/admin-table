@@ -29,8 +29,7 @@ Table component for your administration provides you good options how to load an
 ## Events
 | Events        | payload    | Description   |
 |---------------|---------|-----------|
-| page-change   | new page | Triggers when new page on paginator is selected. |
-| per-page-change | per page count | Triggers when new per page count is selected. |
+| pagination-change   | object with currentPage and perPage | Triggers when something in paginator changes. |
 
 ## Demo
 To see demo run a project:
