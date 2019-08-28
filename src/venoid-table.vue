@@ -48,6 +48,7 @@
             <b-icon icon="emoticon-sad" size="is-large"> </b-icon>
           </p>
           <p>Nothing here.</p>
+          <p v-if="errorMessage">{{ errorMessage }}</p>
         </div>
       </section>
     </template>
@@ -114,7 +115,8 @@ export default {
           }
         ]
       }
-    }
+    },
+    errorMessage: null
   },
   data() {
     return {
@@ -125,7 +127,9 @@ export default {
   computed: {
     total() {
       if (this.totalDataCount === null) {
-        return this.tableData.length
+        if (this.tableData) {
+          return this.tableData.length
+        }
       }
       return this.totalDataCount
     }

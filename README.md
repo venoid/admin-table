@@ -11,9 +11,10 @@ Table component for your administration provides you good options how to load an
 | table-data    | Array   | undefined | Array with your data                 |
 | is-loading    | Boolean | false     | When true, loading animation appears |
 | paginated     | Boolean | false     | When true, pagination appears        |
-| totalDataCount | Number | null     | Total count of your data (if paginated is true) |
-| currentPage   | Number  | 1         | Number of the current page (if paginated is true) |
-| perPageOptions   | Array  | [{value: '5', label: 5}, {value: '10', label: 10}, {value: '15', label: 15}, {value: '20', label: 20}]         | Define your own select box with per page options (if paginated is true) |
+| total-data-count | Number | null     | Total count of your data (if paginated is true) |
+| current-page   | Number  | 1         | Number of the current page (if paginated is true) |
+| per-page-options   | Array  | [{value: '5', label: 5}, {value: '10', label: 10}, {value: '15', label: 15}, {value: '20', label: 20}]         | Define your own select box with per page options (if paginated is true) |
+| error-message | String | null | Message which displays when there are no data in a table |
 
 #### table-columns options
 ```
