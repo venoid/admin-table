@@ -26,6 +26,11 @@ Table component for your administration provides you good options how to load an
 }
 ```
 
+## Events
+| Events        | payload    | Description   |
+|---------------|---------|-----------|
+| page-change   | new page | Triggers when new page on paginator is selected. |
+
 ## Demo
 To see demo run a project:
 
