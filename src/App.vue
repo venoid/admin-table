@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import VenoidTable from './venoid-table.vue';
 
 export default {
