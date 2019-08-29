@@ -9,9 +9,9 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org:venoid/admin-table.git"
+    "url": "git@github.com:venoid/admin-table.git"
   },
-  "homepage": "https://bitbucket.org/venoid/admin-table#readme",
+  "homepage": "https://github.com/venoid/admin-table.git#readme",
   "main": "dist/venoid-table.ssr.js",
   "module": "dist/venoid-table.esm.js",
   "unpkg": "dist/venoid-table.min.js",
