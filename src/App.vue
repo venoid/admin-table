@@ -1,6 +1,11 @@
 <template>
   <div id="app">
     <h1>Venoid table</h1>
+    <a href="https://github.com/venoid/admin-table#readme">
+      <b-icon icon="link" />
+      DOCS
+    </a>
+    <hr>
     <div class="example-container">
       <venoid-table
         :table-columns="tableColumns"
