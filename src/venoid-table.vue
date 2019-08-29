@@ -122,10 +122,14 @@ export default {
     if(this.paginated) {
       this.emitPaginationChange()
     }
+
+    if (process.browser) {
+      this.iPerPage = localStorage.getItem(this.getPerPageKey())
+    }
   },
   data() {
     return {
-      iPerPage: localStorage.getItem(this.getPerPageKey()) || 5,
+      iPerPage: 5,
       perPageLocalStorageKey: null,
       iCurrentPage: this.currentPage
     }
@@ -143,7 +147,9 @@ export default {
   methods: {
     savePerPage(value) {
       this.emitPaginationChange()
-      localStorage.setItem(this.getPerPageKey(), value)
+      if (process.browser) {
+        localStorage.setItem(this.getPerPageKey(), value)
+      }
     },
     getPerPageKey() {
       return `per-page: ${md5(JSON.stringify(this.tableColumns))}`
