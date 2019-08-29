@@ -124,7 +124,7 @@ export default {
     }
 
     if (process.browser) {
-      this.iPerPage = localStorage.getItem(this.getPerPageKey())
+      this.iPerPage = localStorage.getItem(this.getPerPageKey()) || 5
     }
   },
   data() {
