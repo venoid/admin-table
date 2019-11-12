@@ -103,7 +103,6 @@ export default {
   },
   methods: {
     test(data) {
-      console.log(data)
       window.confirm(`${data.title}`)
     }
   }
