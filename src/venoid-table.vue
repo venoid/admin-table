@@ -8,6 +8,7 @@
     :current-page="iCurrentPage"
     :per-page="iPerPage"
     backend-pagination
+    :default-sort-direction="defaultSortOrder"
     :total="total"
     @page-change="emitPaginationChange"
     pagination-size="is-small"
@@ -18,7 +19,9 @@
         :key="index"
         :label="column.label"
         :width="column.width"
+        :field="column.fieldName"
         :numeric="column.type === 'id'"
+        :sortable="column.sortable || false"
       >
         <div v-if="column.type === 'action'" class="buttons">
           <b-button
@@ -111,6 +114,10 @@ export default {
           }
         ]
       }
+    },
+    defaultSortOrder: {
+      type: String,
+      default: 'asc'
     },
     errorMessage: null
   },

@@ -29,6 +29,7 @@ export default {
       tableColumns: [
         {
           type: 'id',
+          fieldName: 'id',
           field: (r) => r.id,
           label: 'ID',
           width: '20'
@@ -36,30 +37,36 @@ export default {
         {
           type: 'string',
           label: 'Title',
+          fieldName: 'title',
           field: (r) => r.title,
-          width: '60'
+          width: '60',
+          sortable: true
         },
         {
           type: 'number',
           label: 'Author Id',
+          fieldName: 'author_id',
           field: (r) => r.author_id,
           width: '60'
         },
         {
           type: 'number',
           label: 'Pages',
+          fieldName: 'pages',
           field: (r) => r.pages,
           width: '60'
         },
         {
           type: 'string',
           label: 'Release Date',
+          fieldName: 'releaseDate',
           field: (r) => r.releaseDate,
           width: '60'
         },
         {
           type: 'string',
           label: 'ISBN',
+          fieldName: 'isbn',
           field: (r) => r.isbn,
           width: '60'
         },
@@ -96,6 +103,7 @@ export default {
   },
   methods: {
     test(data) {
+      console.log(data)
       window.confirm(`${data.title}`)
     }
   }
