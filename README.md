@@ -7,6 +7,10 @@ Table component for your administration provides you good options how to load an
 
 ![screenshot-example](https://raw.githubusercontent.com/venoid/admin-table/master/images/example.png)
 
+## New features
+- Sortable columns
+- Backend sorting. Sort data by yourself on backend.
+
 ## Props
 | Props         | Type    | Default   |                                      |
 |---------------|---------|-----------|--------------------------------------|
@@ -18,6 +22,7 @@ Table component for your administration provides you good options how to load an
 | total-data-count | Number | null     | Total count of your data (if paginated is true) |
 | current-page   | Number  | 1         | Number of the current page (if paginated is true) |
 | per-page-options   | Array  | [{value: '5', label: 5}, {value: '10', label: 10}, {value: '15', label: 15}, {value: '20', label: 20}]         | Define your own select box with per page options (if paginated is true) |
+| backend-sorting | Boolean | false | If true handle sorting on yourself see [sort event](##events) |
 | error-message | String | null | Message which displays when there are no data in a table |
 
 #### table-column options
@@ -36,6 +41,7 @@ Table component for your administration provides you good options how to load an
 | Events        | payload    | Description   |
 |---------------|---------|-----------|
 | pagination-change   | object with currentPage and perPage | Triggers when something in paginator changes. |
+| sort                | object with field and order | Triggers when clicked on sortable column |
 
 ## Demo
 To see demo run a project:

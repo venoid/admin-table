@@ -5,13 +5,18 @@
     :hoverable="true"
     :loading="isLoading"
     :paginated="paginated"
+    backend-pagination
+    pagination-size="is-small"
     :current-page="iCurrentPage"
     :per-page="iPerPage"
-    backend-pagination
-    :default-sort-direction="defaultSortOrder"
     :total="total"
     @page-change="emitPaginationChange"
-    pagination-size="is-small"
+
+    :backend-sorting="backendSorting"
+    :default-sort-direction="defaultSortOrder"
+    :default-sort="[sortField, sortOrder]"
+    @sort="emitSortEvent"
+
   >
     <template slot-scope="props">
       <b-table-column
@@ -119,6 +124,10 @@ export default {
       type: String,
       default: 'asc'
     },
+    backendSorting: {
+      type: Boolean,
+      default: false
+    },
     errorMessage: null
   },
   created() {
@@ -134,7 +143,9 @@ export default {
     return {
       iPerPage: 5,
       perPageLocalStorageKey: null,
-      iCurrentPage: this.currentPage
+      iCurrentPage: this.currentPage,
+      sortField: 'title',
+      sortOrder: 'desc',
     }
   },
   computed: {
@@ -161,6 +172,14 @@ export default {
       this.$emit('pagination-change', {
         currentPage: this.iCurrentPage,
         perPage: this.iPerPage
+      })
+    },
+    emitSortEvent(field, order) {
+      this.sortField = field
+      this.sortOrder = order
+      this.$emit('sort', {
+        field,
+        order
       })
     }
   }
