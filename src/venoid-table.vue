@@ -130,7 +130,7 @@ export default {
     },
     errorMessage: null
   },
-  created() {
+  mounted() {
     if(this.paginated) {
       this.emitPaginationChange()
     }
@@ -169,7 +169,7 @@ export default {
       return `per-page: ${md5(JSON.stringify(this.tableColumns))}`
     },
     emitPaginationChange(d) {
-      this.iCurrentPage = d
+      this.iCurrentPage = d || 1
       this.$emit('pagination-change', {
         currentPage: this.iCurrentPage,
         perPage: this.iPerPage
