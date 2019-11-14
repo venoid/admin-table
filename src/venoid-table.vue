@@ -102,20 +102,24 @@ export default {
       default() {
         return [
           {
-            value: '5',
-            label: 5
+            value: 5,
+            label: '5'
           },
           {
-            value: '10',
-            label: 10
+            value: 10,
+            label: '10'
           },
           {
-            value: '15',
-            label: 15
+            value: 25,
+            label: '25'
           },
           {
-            value: '20',
-            label: 20
+            value: 50,
+            label: '50'
+          },
+          {
+            value: 100,
+            label: '100'
           }
         ]
       }
@@ -131,12 +135,11 @@ export default {
     errorMessage: null
   },
   mounted() {
-    if(this.paginated) {
-      this.emitPaginationChange()
-    }
-
     if (process.browser) {
       this.iPerPage = localStorage.getItem(this.getPerPageKey()) || 5
+      if(this.paginated) {
+        this.emitPaginationChange()
+      }
     }
   },
   data() {
@@ -169,6 +172,7 @@ export default {
       return `per-page: ${md5(JSON.stringify(this.tableColumns))}`
     },
     emitPaginationChange(d) {
+      console.log(this.iPerPage)
       this.iCurrentPage = d || 1
       this.$emit('pagination-change', {
         currentPage: this.iCurrentPage,
