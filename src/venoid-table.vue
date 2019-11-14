@@ -172,7 +172,6 @@ export default {
       return `per-page: ${md5(JSON.stringify(this.tableColumns))}`
     },
     emitPaginationChange(d) {
-      console.log(this.iPerPage)
       this.iCurrentPage = d || 1
       this.$emit('pagination-change', {
         currentPage: this.iCurrentPage,
