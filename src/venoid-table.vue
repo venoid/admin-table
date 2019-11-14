@@ -136,7 +136,7 @@ export default {
   },
   mounted() {
     if (process.browser) {
-      this.iPerPage = localStorage.getItem(this.getPerPageKey()) || 5
+      this.iPerPage = parseInt(localStorage.getItem(this.getPerPageKey())) || 5
       if(this.paginated) {
         this.emitPaginationChange()
       }
