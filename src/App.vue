@@ -11,6 +11,7 @@
         :table-columns="tableColumns"
         :table-data="tableData"
         :isLoading="isLoading"
+        paginated
       />
     </div>
   </div>
