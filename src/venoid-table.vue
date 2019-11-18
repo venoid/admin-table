@@ -5,6 +5,7 @@
     :hoverable="true"
     :loading="isLoading"
     :paginated="paginated"
+    :pagination-simple="isPaginationSimple"
     backend-pagination
     pagination-size="is-small"
     :current-page="iCurrentPage"
@@ -13,8 +14,7 @@
     @page-change="emitPaginationChange"
 
     :backend-sorting="backendSorting"
-    :default-sort-direction="defaultSortOrder"
-    :default-sort="[sortField, sortOrder]"
+    :default-sort="defaultSort"
     @sort="emitSortEvent"
 
   >
@@ -89,6 +89,10 @@ export default {
       type: Boolean,
       default: false
     },
+    isPaginationSimple: {
+      type: Boolean,
+      default: false
+    },
     totalDataCount: {
       type: Number,
       default: null
@@ -124,9 +128,11 @@ export default {
         ]
       }
     },
-    defaultSortOrder: {
-      type: String,
-      default: 'asc'
+    defaultSort: {
+      type: Array,
+      default() {
+        return []
+      }
     },
     backendSorting: {
       type: Boolean,
