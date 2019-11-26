@@ -45,8 +45,8 @@
         </div>
         <div v-else-if="column.type === 'image'" class="table-image">
           <component
-            :is="column.field(props.row)"
-            v-bind="column.props"
+            :is="column.field(props.row).component"
+            v-bind="column.field(props.row).props"
           />
         </div>
         <div v-else>
