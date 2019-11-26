@@ -43,6 +43,12 @@
             ></b-icon>
           </b-button>
         </div>
+        <div v-else-if="column.type === 'image'" class="table-image">
+          <component
+            :is="column.field(props.row)"
+            v-bind="column.props"
+          />
+        </div>
         <div v-else>
           {{ column.field(props.row) }}
         </div>
@@ -203,5 +209,13 @@ export default {
   .per-page {
     position: absolute;
     bottom: 1.5rem;
+  }
+
+  .table-image {
+    display: inline;
+  }
+
+  .table-image img {
+    width: 100%;
   }
 </style>
